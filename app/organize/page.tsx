@@ -1,4 +1,5 @@
 'use client';
+import { UserText } from '@/components/ui/UserText';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import Link from 'next/link';
@@ -65,7 +66,7 @@ export default function Organize() {
       <ul className="space-y-3">
         {mine.map((p) => (
           <li key={p.id} className="rounded-xl border border-neutral-200 bg-white p-4">
-            <Link href={`/pools/${p.id}`} className="block min-h-12"><span className="font-semibold">{p.title}</span><span className="block text-sm text-neutral-700">{p.state} · {p.totalUnits}/{p.moq}</span></Link>
+            <Link href={`/pools/${p.id}`} className="block min-h-12"><UserText as="span" className="font-semibold" value={p.title} /><span className="block text-sm text-neutral-700">{p.state} · {p.totalUnits}/{p.moq}</span></Link>
             {(p.state === 'Accepted' || p.state === 'Dispatched') && (
               <Link href={`/organize/${p.id}/delivery`} className="mt-2 flex min-h-12 items-center justify-center rounded-lg border-2 border-emerald-800 font-semibold text-emerald-900">{t('delivery.title')}</Link>
             )}

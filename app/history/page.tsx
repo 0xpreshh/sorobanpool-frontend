@@ -1,4 +1,5 @@
 'use client';
+import { UserText } from '@/components/ui/UserText';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -29,7 +30,7 @@ export default function History() {
         {done.map((p) => (
           <li key={p.id}>
             <Link href={`/pools/${p.id}`} className="pool-card block min-h-12 rounded-2xl border border-neutral-200 bg-white p-5">
-              <p className="font-semibold">{p.title}</p>
+              <UserText as="p" className="font-semibold" value={p.title} />
               <p className="text-sm text-neutral-700">{states(p.state)} · {new Date(p.fillDeadline).toLocaleDateString()}</p>
             </Link>
           </li>

@@ -1,4 +1,5 @@
 'use client';
+import { UserText } from '@/components/ui/UserText';
 import { useQuery } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -83,7 +84,7 @@ export default function NewPool() {
         <ul className="space-y-2" role="radiogroup" aria-label={t('step1')}>
           {offers.data?.map((o) => (
             <li key={o.id}><label className={`flex min-h-12 items-center gap-3 rounded-xl border p-3 ${offerId === o.id ? 'border-emerald-800 bg-emerald-50' : 'border-neutral-300'}`}>
-              <input type="radio" name="offer" checked={offerId === o.id} onChange={() => setOfferId(o.id)} /><span><span className="block font-semibold">{o.title}</span><span className="text-sm text-neutral-700">{o.unitLabel} · min {o.moq}</span></span>
+              <input type="radio" name="offer" checked={offerId === o.id} onChange={() => setOfferId(o.id)} /><span><UserText as="span" className="block font-semibold" value={o.title} /><span className="text-sm text-neutral-700">{o.unitLabel} · min {o.moq}</span></span>
             </label></li>
           ))}
         </ul>
@@ -106,7 +107,7 @@ export default function NewPool() {
       )}
       {step === 5 && (
         <dl className="space-y-2 rounded-xl border border-neutral-200 bg-white p-4 text-sm">
-          <div><dt className="font-semibold">{t('step1')}</dt><dd>{offer?.title}</dd></div>
+          <div><dt className="font-semibold">{t('step1')}</dt><UserText as="dd" value={offer?.title} /></div>
           <div><dt className="font-semibold">{t('deadlineLabel')}</dt><dd>{new Date(deadline).toLocaleString()}</dd></div>
           <div><dt className="font-semibold">{t('hubAddress')}</dt><dd>{address} · {contact}</dd></div>
           <div><dt className="font-semibold">{t('feeLabel')}</dt><dd>{feePct}%{clusterOnly ? ` · ${t('restrict')}` : ''}</dd></div>

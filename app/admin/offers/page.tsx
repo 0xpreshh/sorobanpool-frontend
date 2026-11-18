@@ -1,4 +1,5 @@
 'use client';
+import { UserText } from '@/components/ui/UserText';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { ErrorExplainer } from '@/components/feedback/ErrorExplainer';
@@ -16,7 +17,7 @@ export default function AdminOffers() {
       {q.data?.length === 0 && <li className="text-neutral-700">{t('empty')}</li>}
       {q.data?.map((o) => (
         <li key={o.id} className="flex items-center justify-between gap-2 rounded-xl border border-neutral-200 bg-white p-4" data-testid="offer-row">
-          <span><span className="block font-semibold">{o.title}</span><span className="text-sm text-neutral-700">{o.category} · {o.status}</span></span>
+          <span><UserText as="span" className="block font-semibold" value={o.title} /><span className="text-sm text-neutral-700">{o.category} · {o.status}</span></span>
           {o.status === 'TAKEN_DOWN' ? <span className="text-sm">{t('offers.takenDown')}</span> : <button className="min-h-12 rounded-lg border border-red-500 px-3 font-semibold text-red-800" onClick={async () => { await api(`/admin/offers/${o.id}/takedown`, { body: {} }); await qc.invalidateQueries({ queryKey: ['admin', 'offers'] }); }}>{t('offers.takedown')}</button>}
         </li>
       ))}

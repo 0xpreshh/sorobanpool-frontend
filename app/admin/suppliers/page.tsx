@@ -1,4 +1,5 @@
 'use client';
+import { UserText } from '@/components/ui/UserText';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
@@ -41,7 +42,7 @@ export default function Suppliers() {
         {q.data?.map((a) => (
           <li key={a.userId} className="space-y-2 rounded-xl border border-neutral-200 bg-white p-4" data-testid="application">
             <p className="font-semibold">{a.businessName}</p>
-            <p className="text-sm text-neutral-700">CAC {a.cacNumber} · {a.address}, {a.lga}, {a.state}</p>
+            <p className="text-sm text-neutral-700">CAC {a.cacNumber} · <UserText value={a.address} />, <UserText value={a.lga} />, <UserText value={a.state} /></p>
             <p className="text-sm">{a.categories.join(', ')}</p>
             <div className="flex gap-2">
               <button disabled={busy === a.userId} onClick={() => void decide(a.userId, true)} className="min-h-12 flex-1 rounded-xl bg-emerald-800 font-bold text-white disabled:opacity-60">{t('approve')}</button>

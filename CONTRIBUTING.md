@@ -11,3 +11,9 @@
 - Routine updates arrive as grouped PRs: Next with `eslint-config-next`, the Stellar packages, the test tooling, and weekly development-tooling bumps. Merge a group only when CI is green. If one member breaks, split the PR and merge the rest rather than merging the group as is.
 - Security updates are never grouped with version updates. Review them as soon as they arrive.
 - `@types/node` stays on major 24 to match the Node major that CI and the Docker image run on. Dependabot ignores its major updates; see `.github/dependabot.yml`.
+
+## Design system
+
+Colour, type, spacing, tap targets and component conventions are in
+[docs/design-system.md](docs/design-system.md). Check your change against it
+before asking for review.

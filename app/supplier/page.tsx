@@ -1,4 +1,5 @@
 'use client';
+import { UserText } from '@/components/ui/UserText';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -76,7 +77,7 @@ export function PoolRow({ card }: { card: PoolCard }) {
   const btn = 'min-h-12 flex-1 rounded-xl font-bold disabled:opacity-60';
   return (
     <li className="space-y-2 rounded-xl border border-neutral-200 bg-white p-4" data-testid="supplier-pool">
-      <p className="font-semibold">{card.title}</p>
+      <UserText as="p" className="font-semibold" value={card.title} />
       <p className="text-sm text-neutral-700">{card.state} · {card.totalUnits} units</p>
       {card.state === 'Filled' && p && (
         <>

@@ -1,4 +1,5 @@
 'use client';
+import { UserText } from '@/components/ui/UserText';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
@@ -19,7 +20,7 @@ export default function Suppliers() {
         {q.data?.map((a) => (
           <li key={a.userId} className="space-y-2 rounded-xl border border-neutral-200 bg-white p-4" data-testid="application">
             <p className="font-semibold">{a.businessName}</p>
-            <p className="text-sm text-neutral-700">CAC {a.cacNumber} · {a.address}, {a.lga}, {a.state}</p>
+            <p className="text-sm text-neutral-700">CAC {a.cacNumber} · <UserText value={a.address} />, <UserText value={a.lga} />, <UserText value={a.state} /></p>
             <p className="text-sm">{a.categories.join(', ')}</p>
             <Link
               href={`/admin/suppliers/${encodeURIComponent(a.userId)}`}

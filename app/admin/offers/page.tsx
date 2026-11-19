@@ -1,4 +1,5 @@
 'use client';
+import { UserText } from '@/components/ui/UserText';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { useMemo, useState } from 'react';
@@ -84,7 +85,7 @@ export default function AdminOffers() {
             <li key={o.id} className="space-y-2 rounded-xl border border-neutral-200 bg-white p-4" data-testid="offer-row">
               <div className="flex items-center justify-between gap-2">
                 <span>
-                  <span className="block font-semibold">{o.title}</span>
+                  <UserText as="span" className="block font-semibold" value={o.title} />
                   <span className="text-sm text-neutral-700">{o.category} · {takenDown ? t('offers.takenDown') : o.status}</span>
                 </span>
                 {!takenDown && (

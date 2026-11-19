@@ -107,7 +107,7 @@ Use `inputMode` and `pattern` for numeric entry.
 
 ### Card
 
-From the settings sections:
+Used across several screens:
 
 ```tsx
 <section className="space-y-4 rounded-xl border border-neutral-300 bg-white p-4">

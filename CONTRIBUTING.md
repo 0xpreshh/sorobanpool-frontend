@@ -17,3 +17,15 @@
 Colour, type, spacing, tap targets and component conventions are in
 [docs/design-system.md](docs/design-system.md). Check your change against it
 before asking for review.
+
+## Adding a language
+
+Adding a language is a multi-file change with a review step for native
+speakers. See [docs/adding-a-language.md](docs/adding-a-language.md).
+
+## End-to-end tests
+
+The Playwright suite runs in `mobile` (Pixel 5 Chromium), `firefox` and `webkit`
+projects. Run one with `pnpm test:e2e --project=firefox`. The nightly workflow
+[`e2e-nightly.yml`](.github/workflows/e2e-nightly.yml) runs every test tagged
+`@smoke` in all three. To add a test to that run, put `@smoke` in its title.
